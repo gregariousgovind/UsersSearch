@@ -1,20 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 import UserFinder from './src/components/UserFinder';
+import UsersContext from './store/users-context';
 import './style.css';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+const DUMMY_USERS = [
+  { id: 'u1', name: 'Max' },
+  { id: 'u2', name: 'Manuel' },
+  { id: 'u3', name: 'Julie' },
+];
 
-  render() {
-    return (
-      <div>
-        <UserFinder />
-      </div>
-    );
-  }
+function App() {
+  const usersContext = {
+    users: DUMMY_USERS,
+  };
+
+  return (
+    <UsersContext.Provider value={usersContext}>
+      <UserFinder />
+    </UsersContext.Provider>
+  );
 }
 
 render(<App />, document.getElementById('root'));
